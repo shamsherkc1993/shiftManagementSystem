@@ -1,0 +1,24 @@
+.divStyle {
+  background-color: #10d5cf;
+  height: 100vh;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.divStyle a {
+  display: block;
+  margin: 20px 0;
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px 0 10px 10px;
+  transition: 0.5s;
+  border-radius: 5px;
+}
+
+.divStyle a:hover,
+.divStyle a:focus {
+  background-color: #8d99ae;
+  transition: 0.5s;
+}

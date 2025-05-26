@@ -19,15 +19,15 @@ const SideBar = () => {
   return (
     <>
       <div className={style.divStyle}>
-        <Link to='/' element={<Dashboard/>}> <svg style={iconStyle} xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 511.97"><path fill-rule="nonzero" d={dashBoardSVg} /></svg>Dashboard</Link>
+        <Link to='/' element={<Dashboard/>}> <svg style={iconStyle} xmlns="http://www.w3.org/2000/svg" shapeRendering="geometricPrecision" textRendering="geometricPrecision" imageRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd" viewBox="0 0 512 511.97"><path fillRule="nonzero" d={dashBoardSVg} /></svg>Dashboard</Link>
 
-        <Link to='/addUser' element={<Shift/>}><svg style={iconStyle} xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 335.09"><path fill-rule="nonzero" d={userSVG}/></svg>Add User</Link>
+        <Link to='/addUser' element={<Shift/>}><svg style={iconStyle} xmlns="http://www.w3.org/2000/svg" shapeRendering="geometricPrecision" textRendering="geometricPrecision" imageRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd" viewBox="0 0 512 335.09"><path fillRule="nonzero" d={userSVG}/></svg>Add User</Link>
 
-        <Link to='/viewuser' element={<ViewUserDetail/>}><svg style={iconStyle} xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 506.49"><path fill-rule="nonzero" d={shiftSVG}/></svg>View User</Link>
+        <Link to='/viewuser' element={<ViewUserDetail/>}><svg style={iconStyle} xmlns="http://www.w3.org/2000/svg" shapeRendering="geometricPrecision" textRendering="geometricPrecision" imageRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd" viewBox="0 0 512 506.49"><path fillRule="nonzero" d={shiftSVG}/></svg>View User</Link>
 
-        <Link to='/viewshift' element={<Shift/>}><svg style={iconStyle} xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 506.49"><path fill-rule="nonzero" d={shiftSVG}/></svg>View Shift</Link>
+        <Link to='/viewshift' element={<Shift/>}><svg style={iconStyle} xmlns="http://www.w3.org/2000/svg" shapeRendering="geometricPrecision" textRendering="geometricPrecision" imageRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd" viewBox="0 0 512 506.49"><path fillRule="nonzero" d={shiftSVG}/></svg>View Shift</Link>
 
-        <Link to='/createshift' element={<ViewUserDetail/>}><svg style={iconStyle} xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 506.49"><path fill-rule="nonzero" d={shiftSVG}/></svg>Create Shift</Link>
+        <Link to='/createshift' element={<ViewUserDetail/>}><svg style={iconStyle} xmlns="http://www.w3.org/2000/svg" shapeRendering="geometricPrecision" textRendering="geometricPrecision" imageRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd" viewBox="0 0 512 506.49"><path fillRule="nonzero" d={shiftSVG}/></svg>Create Shift</Link>
 
        
 

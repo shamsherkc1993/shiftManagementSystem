@@ -1,0 +1,48 @@
+.mainDiv {
+  border: 1px solid #8d99ae;
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.secondDiv {
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.userImg {
+  height: 40px;
+  width: 40px;
+}
+
+.searchFeild {
+  width: 80vh !important;
+  height: 50px;
+}
+.styleSVG {
+  height: 20px;
+  width: 20px;
+}
+.mainDiv table {
+  font-size: 12px;
+}
+
+.EditDeleteBtn img {
+  height: 20px;
+  width: 20px;
+}
+
+.topBtn {
+  margin: 10px 30px;
+  text-decoration: none;
+  color: #8d99ae;
+}
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  padding-top: 28px !important;
+}

@@ -46,3 +46,11 @@ thead,
 tr {
   padding-top: 28px !important;
 }
+
+.toast {
+  text-align: center;
+  padding: 5px;
+  font-weight: 500;
+  font-size: 14px;
+  color: brown;
+}

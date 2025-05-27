@@ -1,0 +1,12 @@
+.maindiv {
+  border: 1px solid #8d99ae;
+  padding-top: 10px;
+}
+
+.maindiv h3 {
+  padding-left: 40px;
+}
+
+.secondMainDiv {
+  font-size: 12px;
+}

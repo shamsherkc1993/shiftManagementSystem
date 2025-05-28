@@ -3,14 +3,15 @@ import MainContentTheme from "./commonComponents/MainContentTheme";
 import { Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { UserContext } from "./useContext/UserContext";
-
+import {
+  URL,
+  headingSVG,
+  filterSVG,
+  downloadSVG,
+} from "./customHooks/AllHooks";
+import { useNavigate } from "react-router";
 function App() {
-  const headingSVG =
-    "M108.68,122.88H11.24A11.28,11.28,0,0,1,0,111.64V22.55A11.28,11.28,0,0,1,11.24,11.31H21.61V25.14a12.35,12.35,0,0,0,4.67,9.61,14.55,14.55,0,0,0,18.31,0,12.35,12.35,0,0,0,4.67-9.61V11.31H70.2V25.14a12.35,12.35,0,0,0,4.67,9.61,14.55,14.55,0,0,0,18.31,0,12.35,12.35,0,0,0,4.67-9.61V11.31h10.83a11.3,11.3,0,0,1,11.24,11.24v89.09a11.27,11.27,0,0,1-11.24,11.24ZM83.58,56.77h16.1a2.07,2.07,0,0,1,2.06,2v13.4a2.07,2.07,0,0,1-2.06,2H83.58a2.06,2.06,0,0,1-2-2V58.82a2.05,2.05,0,0,1,2-2Zm-31.51,0H68.18a2.06,2.06,0,0,1,2,2v13.4a2.07,2.07,0,0,1-2,2H52.07a2.06,2.06,0,0,1-2-2V58.82a2.06,2.06,0,0,1,2-2Zm-31.84,0H36.34a2.06,2.06,0,0,1,2,2v13.4a2.07,2.07,0,0,1-2,2H20.23a2.06,2.06,0,0,1-2.05-2V58.82a2.05,2.05,0,0,1,2.05-2ZM83.58,85.26h16.1a2.07,2.07,0,0,1,2.06,2v13.4a2.06,2.06,0,0,1-2.06,2.05H83.58a2.06,2.06,0,0,1-2-2.05V87.31a2.06,2.06,0,0,1,2-2Zm-31.51,0H68.18a2.06,2.06,0,0,1,2,2v13.4a2.06,2.06,0,0,1-2,2.05H52.07a2.06,2.06,0,0,1-2-2.05V87.31a2.07,2.07,0,0,1,2-2Zm-31.84,0H36.34a2.06,2.06,0,0,1,2,2v13.4a2.06,2.06,0,0,1-2,2.05H20.23a2.06,2.06,0,0,1-2.05-2.05V87.31a2.06,2.06,0,0,1,2.05-2ZM78.6,4.45C78.6,2,81,0,84,0s5.43,2,5.43,4.45V25.14c0,2.46-2.42,4.45-5.43,4.45s-5.42-2-5.42-4.45V4.45ZM30,4.45C30,2,32.44,0,35.44,0s5.42,2,5.42,4.45V25.14c0,2.46-2.42,4.45-5.42,4.45S30,27.6,30,25.14V4.45ZM3.6,43.86v66.58a8.87,8.87,0,0,0,8.84,8.84h95a8.87,8.87,0,0,0,8.85-8.84V43.86Z";
-
-  const URL = "http://localhost:3000/users";
   const [userDetailData, setUserDetailData] = useState([]);
-
   async function getUserDetailData() {
     let response = await fetch(URL);
     let data = await response.json();
@@ -20,10 +21,74 @@ function App() {
     getUserDetailData();
   }, []);
 
+  //CommonViewData page content
+  const [searchTerm, setSearchTerm] = useState("");
+  const [toast, setToast] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage] = useState(5);
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+
+  //filter part
+  const filteredUsers = userDetailData.filter(
+    (user) =>
+      user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      `${user.First_name} ${user.Last_name}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.phone.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+
+  // delete function
+  const handleDelete = async (id) => {
+    let response = await fetch(`${URL}/${id}`, {
+      method: "delete",
+    });
+    await response.json();
+    setToast(id);
+    getUserDetailData();
+  };
+
+  //Edit user detail
+  const navigate = useNavigate();
+  const handleEdit = (id) => {
+    navigate("/edituser/" + id);
+  };
+
   return (
     <>
       <UserContext.Provider
-        value={{ userDetailData, setUserDetailData, URL, getUserDetailData }}
+        value={{
+          userDetailData,
+          setUserDetailData,
+          URL,
+          getUserDetailData,
+          filterSVG,
+          downloadSVG,
+          filteredUsers,
+          searchTerm,
+          setSearchTerm,
+          toast,
+          setToast,
+          currentPage,
+          setCurrentPage,
+          usersPerPage,
+          indexOfLastUser,
+          indexOfFirstUser,
+          handleDelete,
+          paginate,
+          totalPages,
+          currentUsers,
+          navigate,
+          handleEdit,
+        }}
       >
         <Container fluid>
           <div

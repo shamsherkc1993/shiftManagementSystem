@@ -2,9 +2,12 @@ import { UserContext } from "../useContext/UserContext";
 import { useContext, useState } from "react";
 import style from "./AddUser.module.css";
 import { Row, Col, Form, Button } from "react-bootstrap";
+import ViewUserDetail from "./ViewUserDetail";
 
 const AddUser = () => {
   const { URL } = useContext(UserContext);
+  const [addMessage, setAddMessage] = useState("");
+  console.log(addMessage);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -115,135 +118,207 @@ const AddUser = () => {
       });
 
       const result = await response.json();
-      console.log(result);
-      alert("User posted in correct format!");
+      setAddMessage(result);
     } catch (err) {
       console.error(err);
       alert("Failed to submit");
     }
   };
 
+  const resetForm = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      level: "",
+      country: "",
+      username: "",
+      zipCode: "",
+      city: "",
+      street: "",
+      availableDays: [],
+      startTime: "",
+      endTime: "",
+      workHour: "",
+    });
+    setAddMessage("");
+  };
+
   return (
     <div className={style.mainDiv}>
-      <Row>
-        <h3>Add New Employee Detail</h3>
-        <Col>
-          <Form onSubmit={createUser}>
-            <Row className="mb-4">
-              <Form.Group as={Col}>
-                <Form.Label>First name</Form.Label>
-                <Form.Control
-                  name="firstName"
-                  required
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label>Last name</Form.Label>
-                <Form.Control
-                  name="lastName"
-                  required
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label>Email</Form.Label>
-                <Form.Control name="email" required onChange={handleChange} />
-              </Form.Group>
-            </Row>
-            <Row className="mb-4">
-              <Form.Group as={Col}>
-                <Form.Label>Phone</Form.Label>
-                <Form.Control name="phone" required onChange={handleChange} />
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label>Level</Form.Label>
-                <Form.Control name="level" required onChange={handleChange} />
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label>Country</Form.Label>
-                <Form.Control name="country" required onChange={handleChange} />
-              </Form.Group>
-            </Row>
-            <Row className="mb-4">
-              <Form.Group as={Col}>
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  name="username"
-                  required
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label>Zip Code</Form.Label>
-                <Form.Control name="zipCode" required onChange={handleChange} />
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label>City</Form.Label>
-                <Form.Control name="city" required onChange={handleChange} />
-              </Form.Group>
-            </Row>
-            <Row className="mb-4">
-              <Form.Group as={Col}>
-                <Form.Label>Street</Form.Label>
-                <Form.Control name="street" required onChange={handleChange} />
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label>Available Days</Form.Label>
-                <div>
-                  {[
-                    "Sunday",
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                  ].map((day) => (
-                    <div key={day}>
-                      <input
-                        type="checkbox"
-                        name="availableDays"
-                        value={day}
-                        onChange={handleChange}
-                      />
-                      <label>{day}</label>
+      {!addMessage ? (
+        <>
+          <Row>
+            <h3>Add New Employee Detail</h3>
+            <Col>
+              <Form onSubmit={createUser}>
+                <Row className="mb-4">
+                  <Form.Group as={Col}>
+                    <Form.Label>First name</Form.Label>
+                    <Form.Control
+                      name="firstName"
+                      required
+                      onChange={handleChange}
+                      type="text"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>Last name</Form.Label>
+                    <Form.Control
+                      name="lastName"
+                      required
+                      onChange={handleChange}
+                      type="text"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      name="email"
+                      required
+                      onChange={handleChange}
+                      type="email"
+                    />
+                  </Form.Group>
+                </Row>
+                <Row className="mb-4">
+                  <Form.Group as={Col}>
+                    <Form.Label>Phone</Form.Label>
+                    <Form.Control
+                      name="phone"
+                      required
+                      onChange={handleChange}
+                      type="phone"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>Level</Form.Label>
+                    <Form.Control
+                      name="level"
+                      required
+                      onChange={handleChange}
+                      type="text"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>Country</Form.Label>
+                    <Form.Control
+                      name="country"
+                      required
+                      onChange={handleChange}
+                      type="text"
+                    />
+                  </Form.Group>
+                </Row>
+                <Row className="mb-4">
+                  <Form.Group as={Col}>
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                      name="username"
+                      required
+                      onChange={handleChange}
+                      type="text"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>Zip Code</Form.Label>
+                    <Form.Control
+                      name="zipCode"
+                      required
+                      onChange={handleChange}
+                      type="number"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>City</Form.Label>
+                    <Form.Control
+                      name="city"
+                      required
+                      onChange={handleChange}
+                      type="text"
+                    />
+                  </Form.Group>
+                </Row>
+                <Row className="mb-4">
+                  <Form.Group as={Col}>
+                    <Form.Label>Street</Form.Label>
+                    <Form.Control
+                      name="street"
+                      required
+                      onChange={handleChange}
+                      type="number"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>Available Days</Form.Label>
+                    <div>
+                      {[
+                        "Sunday",
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday",
+                      ].map((day) => (
+                        <div key={day}>
+                          <input
+                            type="checkbox"
+                            name="availableDays"
+                            value={day}
+                            onChange={handleChange}
+                          />
+                          <label>{day}</label>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </Form.Group>
-            </Row>
-            <Row>
-              <Form.Group as={Col}>
-                <Form.Label>Start Time</Form.Label>
-                <Form.Control
-                  name="startTime"
-                  type="datetime-local"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label>End Time</Form.Label>
-                <Form.Control
-                  name="endTime"
-                  type="datetime-local"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label>Total Work Hour</Form.Label>
-                <Form.Control
-                  name="workHour"
-                  type="number"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Row>
-            <br />
-            <Button type="submit">Submit Form</Button>
-          </Form>
-        </Col>
-      </Row>
+                  </Form.Group>
+                </Row>
+                <Row>
+                  <Form.Group as={Col}>
+                    <Form.Label>Start Time</Form.Label>
+                    <Form.Control
+                      name="startTime"
+                      type="datetime-local"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>End Time</Form.Label>
+                    <Form.Control
+                      name="endTime"
+                      type="datetime-local"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>Total Work Hour</Form.Label>
+                    <Form.Control
+                      name="workHour"
+                      type="number"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Row>
+                <br />
+                <Button type="submit" variant="success">
+                  Submit Form
+                </Button>
+              </Form>
+            </Col>
+          </Row>
+        </>
+      ) : (
+        <>
+          <h3 style={{ color: "brown" }}>New User Added</h3>
+          <ViewUserDetail />
+          <br />
+          <Button onClick={resetForm} variant="primary">
+            Add New Employee
+          </Button>
+        </>
+      )}
     </div>
   );
 };

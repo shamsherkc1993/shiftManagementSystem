@@ -1,0 +1,29 @@
+.maindiv {
+  border: 1px solid #8d99ae;
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+.maindiv h3 {
+  padding-bottom: 30px;
+  color: #10d5cf;
+}
+
+.cols {
+  display: flex;
+  flex-wrap: wrap;
+}
+.para {
+  padding: 10px 20px;
+  flex: 20%;
+  border: 1px solid #10d5cf;
+  margin: 5px;
+  color: #a5b8b7;
+  transition: 0.5s;
+}
+
+.para:hover,
+.para:focus {
+  border: 1px solid #023634;
+  transition: 0.5s;
+}
